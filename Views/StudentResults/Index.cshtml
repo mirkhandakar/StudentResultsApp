@@ -1,0 +1,43 @@
+﻿@model IEnumerable<StudentResultsApp.Models.StudentResult>
+
+@{
+    ViewData["Title"] = "Student Results";
+}
+
+<h2>Student Results</h2>
+
+<form asp-action="Index" method="get">
+    <select name="statusFilter" class="form-control" onchange="this.form.submit()">
+        All
+        Needs Improvement
+        Good
+        Excellent
+    </select>
+</form>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Student Name</th>
+            <th>Course Title</th>
+            <th>Total Marks</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var result in Model)
+        {
+            <tr>
+                <td>@result.Id</td>
+                <td>@result.StudentName</td>
+                <td>@result.CourseTitle</td>
+                <td>@result.TotalMarks</td>
+                <td>@result.Status</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-action="Create">Add New Result</a>
